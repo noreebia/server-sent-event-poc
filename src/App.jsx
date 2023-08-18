@@ -6,27 +6,27 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  const sse = new EventSource("http://localhost:8080/v1/events/subscriptions?memberId=1&channelId=3");
+  const sse = new EventSource("http://localhost:8080/v1/server-sent-events/subscriptions/channels?memberId=5");
 
   sse.onmessage = e => console.log(e);
 
-  sse.onerror = () => {
-    // error log here 
+  // sse.onerror = () => {
+  //   // error log here 
     
-    sse.close();
-  }
+  //   sse.close();
+  // }
 
-  sse.addEventListener("error", (event) => {
-    if (event.type === "error") {
-      console.error("Connection error:", event.message);
-    } else if (event.type === "exception") {
-      console.error("Error:", event.message, event.error);
-    }
-  });
+  // sse.addEventListener("error", (event) => {
+  //   if (event.type === "error") {
+  //     console.error("Connection error:", event.message);
+  //   } else if (event.type === "exception") {
+  //     console.error("Error:", event.message, event.error);
+  //   }
+  // });
   
-  sse.addEventListener("close", (event) => {
-    console.log("Close SSE connection.");
-  });
+  // sse.addEventListener("close", (event) => {
+  //   console.log("Close SSE connection.");
+  // });
 
   // sse.addEventListener('connect', (e) => {
   //   const { data: receivedConnectData } = e;
